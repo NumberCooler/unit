@@ -1,2 +1,2 @@
 # unit
-wide fullstacked client
+wide fullstacked client agent.
