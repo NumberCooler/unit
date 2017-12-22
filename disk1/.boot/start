@@ -1,0 +1,1 @@
+{"type":"function","value":{"type":"function","value":"function (disk) { \n\tif(arguments.length == 0) {\n\t\tconsole.log(\"first argument need to be disk to be booted.\" );\n\t\treturn;\n\t}\n\tfor(var x = 0; x < disk.boot.length;x++) \n\t\tdisk.boot[x](); \n}"}}
