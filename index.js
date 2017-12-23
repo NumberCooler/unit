@@ -39,11 +39,12 @@ var documentation = DiskProxy("docs","object");
 //diskproxy.y();
 
 //console.log(diskproxy.x);
-console.log( JSON.parse(dump(diskproxy)) );
+//console.log( JSON.parse(dump(diskproxy)) );
 //console.log(diskproxy.x.push);
 //console.log(diskproxy.x[0]);
 
 const r = repl.start('> ');
+
 Object.defineProperty(r.context, 'disk', {
   configurable: false,
   enumerable: true,
@@ -64,3 +65,4 @@ Object.defineProperty(r.context, 'memory', {
   enumerable: true,
   value: memory
 });
+diskproxy.boot.start(diskproxy);
