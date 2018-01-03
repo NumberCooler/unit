@@ -1,0 +1,1 @@
+{"type":"function","value":{"type":"function","value":"function (name) {\n\tsetInterval(function() {\n\t\twhile($.disk.private.mailbox[name].length>0) {\n\t\t\tvar mailbox = $.disk.private.mailbox[name];\n\t\t\tconsole.log( mailbox[0] );\n\t\t\tmailbox.removeAt(0);\n\t\t}\n\t},1000);\n\n}"}}

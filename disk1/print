@@ -1,1 +1,0 @@
-{"type":"function","value":{"type":"function","value":"function (x) { console.log(this[x]); }"}}
