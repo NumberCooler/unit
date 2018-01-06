@@ -67,10 +67,9 @@ function initialize() {
 	  enumerable: true,
 	  value: rt
 	});
-	try {
-		delete diskproxy.private.instances.mock;
-	} catch(e) {
-	}
+	try { delete diskproxy.private.instances.mock; } catch(e) {}
+	try { delete documentation.mock; } catch(e) {}
+	try { delete swap.mock; } catch(e) {}
 	function set(key,val) {
 		Object.defineProperty(r.context, key, {
 		  configurable: false,
@@ -88,9 +87,14 @@ initialize();
 r.on('exit', () => {
 	// shutdown
 	diskproxy.private.instances.mock = 0;
+	swap.mock = 0;
+	documentation.mock = 0;
 	process.exit();
 });
 r.on('reset',() => {
 	// shutdown
+	diskproxy.private.instances.mock = 0;
+	swap.mock = 0;
+	documentation.mock = 0;
 	initialize();
 });
