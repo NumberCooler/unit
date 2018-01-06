@@ -1,1 +1,0 @@
-{"type":"function","value":{"type":"function","value":"function (t,c) { for(var x = 0; x < t.length;x++) c(x,t[x]); }"}}

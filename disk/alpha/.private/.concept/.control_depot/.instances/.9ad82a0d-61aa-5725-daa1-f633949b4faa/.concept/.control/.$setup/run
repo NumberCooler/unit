@@ -1,1 +1,0 @@
-{"type":"function","value":{"type":"function","value":"function (ctx) {\n\t\t\t\tthis.target = {};\n\t\t\t\tvar base = this.target;\n\t\t\t\tfor(var x = 0; x < this.data.length;x++) {\n\t\t\t\t\tbase = this.data[x](ctx,base);\n\t\t\t\t}\n\t\t\t\treturn base;\n\t\t\t}"}}
