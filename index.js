@@ -78,19 +78,7 @@ function initialize() {
 		});
 	}
 	
-	var alias_contexts = {};
-	Object.defineProperty(r.context,"$loadAlias",{
-		get : function() {
-			return function(target) {
-				for(var key in target) {
-					alias_contexts[target_name].push(key);
-					var $ = r.context;
-					eval("var f = " + diskproxy.alias[key]);
-					set(key,f);
-				}
-			}
-		}
-	});
+	
 	
 	for(var key in diskproxy.alias) {
 		var $ = r.context;
