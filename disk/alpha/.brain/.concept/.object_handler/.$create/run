@@ -1,1 +1,0 @@
-{"type":"function","value":{"type":"function","value":"function (ctx) { \n\tthis.target = {}; \n\tvar base = this.target;\n\tfor(var x = 0; x < this.data.length;x++) {\n\t\tbase = this.data[x](ctx,base);\n\t}\n\treturn base;\n}"}}

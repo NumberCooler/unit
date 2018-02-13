@@ -10,18 +10,38 @@ context.rt = swap;
 var rt = dp.getSwap();
 var ram = {};
 context.ram = ram;
-var lib = {
-	fs : fs
-};
+const crypto = require('crypto');
+const readline = require("readline");
 context.lib = lib;
 var diskproxy = DiskProxy("disk/alpha","object",context);
 context.disk = diskproxy;
+
+var alias = DiskProxy("disk/alias","object",context);
+
 var documentation = DiskProxy("docs","object",context);
 context.help = documentation;
+
+
+
+
+var lib = {
+	fs : fs,
+	format : {
+		disk : function($) {
+			//console.log("$.disk.login.username + (?:password) = hmac digest");
+			//console.log( crypto.createHmac('sha256', $.disk.password).digest("hex") );
+			// for(var key in diskproxy) { delete diskproxy[key]; }
+		}
+	}
+};
+
+for(var x in diskproxy)
+	console.log(x);
 
 function _eval(code) {
 	eval(code);
 }
+
 
 const r = repl.start('> ');
 function initialize() {
@@ -50,10 +70,20 @@ function initialize() {
 	  value: ram
 	});
 	
-	Object.defineProperty(r.context,"disk",{
+	Object.defineProperty(r.context, "disk",{
 		configurable: false,
 		enumerable: true,
-		value: diskproxy
+		get : function() {
+			return diskproxy;
+		}
+	});
+	
+	Object.defineProperty(r.context, "env",{
+		configurable: false,
+		enumerable: true,
+		get : function() {
+			return alias;
+		}
 	});
 
 	Object.defineProperty(r.context, 'help', {
@@ -67,7 +97,8 @@ function initialize() {
 	  enumerable: true,
 	  value: rt
 	});
-	try { delete diskproxy.private.instances.mock; } catch(e) {}
+	try { delete diskproxy.mock; } catch(e) {}
+	try { delete alias.mock; } catch(e) {}
 	try { delete documentation.mock; } catch(e) {}
 	try { delete swap.mock; } catch(e) {}
 	function set(key,val) {
@@ -77,26 +108,25 @@ function initialize() {
 		  value: val
 		});
 	}
-	
-	
-	
-	for(var key in diskproxy.alias) {
+	for(var key in alias) {
 		var $ = r.context;
-		eval("var f = " + diskproxy.alias[key]);
+		eval("var f = " + alias[key]);
 		set(key,f);
 	}
 }
 initialize();
 r.on('exit', () => {
 	// shutdown
-	diskproxy.private.instances.mock = 0;
+	diskproxy.mock = 0;
+	alias.mock = 0;
 	swap.mock = 0;
 	documentation.mock = 0;
 	process.exit();
 });
 r.on('reset',() => {
 	// shutdown
-	diskproxy.private.instances.mock = 0;
+	diskproxy.mock = 0;
+	alias.mock = 0;
 	swap.mock = 0;
 	documentation.mock = 0;
 	initialize();

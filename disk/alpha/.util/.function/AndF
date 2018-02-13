@@ -1,1 +1,0 @@
-{"type":"function","value":{"type":"function","value":"function (target) {\n\t\t\t\tvar r = false;\n\t\t\t\tfor(var x = 1; x < arguments.length;x++) {\n\t\t\t\t\tr = arguments[x].apply(target,[]);\n\t\t\t\t\tif(!r) return false;\n\t\t\t\t}\n\t\t\t\treturn true;\n\t\t\t}"}}
