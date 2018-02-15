@@ -1,5 +1,5 @@
 
-![Unit](/img/logo.png)
+![Unit](/img/logo.png=256x256)
 # Unit
 
 ## DiskProxy
