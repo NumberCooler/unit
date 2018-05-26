@@ -35,8 +35,7 @@ var lib = {
 	}
 };
 
-for(var x in diskproxy)
-	console.log(x);
+
 
 function _eval(code) {
 	eval(code);
@@ -123,6 +122,8 @@ r.on('exit', () => {
 	documentation.mock = 0;
 	process.exit();
 });
+for(var x in diskproxy)
+	console.log(x);
 r.on('reset',() => {
 	// shutdown
 	diskproxy.mock = 0;
